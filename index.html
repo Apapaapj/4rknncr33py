@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARKAN CREEPY</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Special+Elite&display=swap');
+
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:'Special Elite', monospace;
+  overflow:hidden;
+}
+
+/* background */
+body::before{
+  content:"";
+  position:fixed;
+  width:100%;height:100%;
+  background:url('cb823fcb-d202-41a0-be4c-872783161abd.jpeg') center/cover no-repeat;
+  filter:blur(2px) brightness(0.6);
+  animation:zoom 20s infinite alternate;
+  z-index:-2;
+}
+
+@keyframes zoom{
+  from{transform:scale(1)}
+  to{transform:scale(1.2)}
+}
+
+/* glitch universal */
+body *{
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker{
+  0%,100%{opacity:1}
+  50%{opacity:0.3}
+  60%{opacity:1}
+}
+
+/* header */
+header{
+  text-align:center;
+  padding:20px;
+  font-size:45px;
+  font-family:'Nosifer', cursive;
+  color:red;
+  animation:shake 0.3s infinite;
+}
+
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(-3px,3px)}
+  50%{transform:translate(3px,-3px)}
+  75%{transform:translate(-2px,2px)}
+  100%{transform:translate(0)}
+}
+
+/* gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:10px;
+  padding:20px;
+}
+
+.gallery img{
+  width:100%;
+  border-radius:10px;
+  transition:.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.2) rotate(5deg);
+  filter:brightness(1.5);
+}
+
+/* glitch text */
+.glitch{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:50px;
+  font-family:'Creepster';
+  color:red;
+  animation:glitch 1s infinite;
+}
+
+@keyframes glitch{
+  0%{transform:translate(-50%,-50%) skew(0)}
+  50%{transform:translate(-48%,-52%) skew(10deg)}
+  100%{transform:translate(-50%,-50%) skew(0)}
+}
+</style>
+</head>
+
+<body>
+
+<header>ARKAN CREEPY</header>
+<div class="glitch">YOU BELONG HERE</div>
+
+<div class="gallery">
+<img src="motion_photo_7523844779172652385~2.jpg">
+<img src="IMG_20260324_225639_424.jpg">
+<img src="IMG_20260324_225639_382.jpg">
+<img src="motion_photo_5823942349673579073.jpg">
+<img src="motion_photo_7247671055954824122.jpg">
+<img src="motion_photo_5808118521687866893~2.jpg">
+</div>
+
+<audio autoplay loop src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_4f2d6b6b6a.mp3?filename=horror-ambience-110016.mp3"></audio>
+
+<script>
+// judul berubah random
+setInterval(()=>{
+  document.title = Math.random().toString(36).substring(2,8);
+},2000);
+
+// suara jumpscare random
+setInterval(()=>{
+  const s=new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b7f91.mp3');
+  s.volume=1;
+  s.play();
+},7000);
+
+// layar goyang
+setInterval(()=>{
+  document.body.style.transform=`translate(${Math.random()*15}px, ${Math.random()*15}px)`;
+  setTimeout(()=>{document.body.style.transform='none'},100);
+},2000);
+</script>
+
+</body>
+</html>
