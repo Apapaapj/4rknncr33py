@@ -1,109 +1,101 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galau Cinematic</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* --- General --- */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #fff;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galau Cinematic Aesthetic</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* --- General --- */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
 
-    /* --- Neon floating text --- */
-    .neon-text {
-      font-size: 2.5rem;
-      text-transform: uppercase;
-      color: #ff4c4c;
-      text-shadow:
-        0 0 5px #ff4c4c,
-        0 0 10px #ff4c4c,
-        0 0 20px #ff4c4c,
-        0 0 40px #ff0000,
-        0 0 80px #ff0000;
-      position: absolute;
-      animation: float 5s infinite;
-      white-space: nowrap;
-    }
+  /* --- Gallery grid --- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 50px;
+    z-index: 1;
+  }
 
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      50% { transform: translateY(-200px) rotate(10deg); opacity: 1; }
-      100% { transform: translateY(-400px) rotate(-10deg); opacity: 0; }
-    }
+  .gallery img {
+    width: 100%;
+    border-radius: 15px;
+    transition: transform 0.5s, filter 0.5s;
+    filter: brightness(0.8) drop-shadow(0 0 10px #ff0000);
+  }
 
-    /* --- Spotify player --- */
-    .spotify-player {
-      position: fixed;
-      bottom: 20px;
-      width: 300px;
-      height: 80px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(255,0,0,0.5);
-      z-index: 10;
-    }
+  .gallery img:hover {
+    transform: scale(1.05);
+    filter: brightness(1) drop-shadow(0 0 20px #ff4c4c);
+  }
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+  /* --- Neon text --- */
+  .neon-text {
+    position: absolute;
+    top: 20px;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    color: #ff4c4c;
+    text-shadow:
+      0 0 5px #ff4c4c,
+      0 0 10px #ff4c4c,
+      0 0 20px #ff4c4c,
+      0 0 40px #ff0000;
+    animation: fadeText 5s infinite;
+    pointer-events: none;
+  }
 
-    /* --- Gallery floating images --- */
-    .gallery {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 1;
-    }
+  @keyframes fadeText {
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+  }
 
-    .gallery img {
-      position: absolute;
-      width: 150px;
-      height: auto;
-      opacity: 0.2;
-      border-radius: 15px;
-      filter: drop-shadow(0 0 10px #ff0000);
-      animation: floatImage linear infinite;
-    }
+  /* --- Spotify player --- */
+  .spotify-player {
+    position: fixed;
+    bottom: 20px;
+    width: 320px;
+    height: 80px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255,0,0,0.5);
+  }
 
-    @keyframes floatImage {
-      0% { transform: translateY(100vh) rotate(0deg); }
-      100% { transform: translateY(-200px) rotate(360deg); }
-    }
-
-  </style>
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
 </head>
 <body>
 
+  <!-- Neon text -->
+  <div id="neonContainer" class="neon-text"></div>
+
   <!-- Gallery -->
   <div class="gallery">
-    <img src="motion_photo_7523844779172652385~2.jpg">
-    <img src="IMG_20260324_225639_424.jpg">
-    <img src="IMG_20260324_225639_382.jpg">
-    <img src="motion_photo_5823942349673579073.jpg">
-    <img src="motion_photo_7247671055954824122.jpg">
-    <img src="motion_photo_5808118521687866893~2.jpg">
+    <img src="motion_photo_7523844779172652385~2.jpg" alt="Foto 1">
+    <img src="IMG_20260324_225639_424.jpg" alt="Foto 2">
+    <img src="IMG_20260324_225639_382.jpg" alt="Foto 3">
+    <img src="motion_photo_5823942349673579073.jpg" alt="Foto 4">
+    <img src="motion_photo_7247671055954824122.jpg" alt="Foto 5">
+    <img src="motion_photo_5808118521687866893~2.jpg" alt="Foto 6">
   </div>
-
-  <!-- Neon text container -->
-  <div id="neonContainer"></div>
 
   <!-- Spotify player -->
   <div class="spotify-player">
@@ -112,7 +104,6 @@
   </div>
 
   <script>
-    // Kata-kata galau
     const quotes = [
       "Aku rindu yang tak mungkin kembali...",
       "Hujan di kota ini mengingatkanku padamu...",
@@ -124,26 +115,11 @@
     const container = document.getElementById("neonContainer");
 
     function showQuote() {
-      const quote = document.createElement("div");
-      quote.classList.add("neon-text");
-      quote.style.left = Math.random() * (window.innerWidth - 300) + "px";
-      quote.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`; // neon random color
-      quote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
-      container.appendChild(quote);
-
-      // Hapus setelah animasi selesai
-      setTimeout(() => quote.remove(), 5000);
+      container.textContent = quotes[Math.floor(Math.random() * quotes.length)];
     }
 
-    setInterval(showQuote, 1500);
-
-    // Animasi gambar floating acak
-    const images = document.querySelectorAll(".gallery img");
-    images.forEach(img => {
-      img.style.left = Math.random() * window.innerWidth + "px";
-      img.style.animationDuration = (10 + Math.random() * 10) + "s";
-      img.style.animationDelay = Math.random() * 5 + "s";
-    });
+    showQuote();
+    setInterval(showQuote, 5000);
   </script>
 
 </body>
