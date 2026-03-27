@@ -13,51 +13,77 @@ body{
   background:black;
   color:white;
   font-family:'Special Elite', monospace;
-  overflow:hidden;
 }
 
-/* background */
+/* wallpaper */
 body::before{
   content:"";
   position:fixed;
   width:100%;height:100%;
   background:url('cb823fcb-d202-41a0-be4c-872783161abd.jpeg') center/cover no-repeat;
-  filter:blur(2px) brightness(0.6);
-  animation:zoom 20s infinite alternate;
-  z-index:-2;
+  filter:blur(2px) brightness(0.7);
+  z-index:-1;
 }
 
-@keyframes zoom{
-  from{transform:scale(1)}
-  to{transform:scale(1.2)}
+/* login */
+.login{
+  position:fixed;
+  width:100%;height:100%;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:10;
+  text-align:center;
 }
 
-/* glitch universal */
-body *{
-  animation: flicker 2s infinite;
+/* zalgo */
+.zalgo{
+  font-family:'Creepster';
+  color:red;
+  text-shadow:0 0 5px red,0 0 15px black;
+  animation:flicker 2s infinite;
 }
+
+.kecil{font-size:14px;}
 
 @keyframes flicker{
   0%,100%{opacity:1}
-  50%{opacity:0.3}
-  60%{opacity:1}
+  50%{opacity:0.5}
+}
+
+/* IG */
+.ig{
+  color:white;
+  text-decoration:none;
+  border:1px solid red;
+  padding:8px;
+  margin-top:10px;
+}
+.ig:hover{background:red;}
+
+/* warning */
+.info{
+  font-size:12px;
+  color:#aaa;
+  margin-top:15px;
+  max-width:250px;
 }
 
 /* header */
 header{
   text-align:center;
   padding:20px;
-  font-size:45px;
+  font-size:40px;
   font-family:'Nosifer', cursive;
   color:red;
-  animation:shake 0.3s infinite;
+  animation:shake 1.5s infinite;
 }
 
 @keyframes shake{
   0%{transform:translate(0)}
-  25%{transform:translate(-3px,3px)}
-  50%{transform:translate(3px,-3px)}
-  75%{transform:translate(-2px,2px)}
+  50%{transform:translate(-2px,2px)}
   100%{transform:translate(0)}
 }
 
@@ -74,36 +100,62 @@ header{
   border-radius:10px;
   transition:.3s;
 }
-
 .gallery img:hover{
-  transform:scale(1.2) rotate(5deg);
-  filter:brightness(1.5);
+  transform:scale(1.1);
 }
 
 /* glitch text */
 .glitch{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:50px;
+  text-align:center;
+  font-size:30px;
   font-family:'Creepster';
   color:red;
-  animation:glitch 1s infinite;
+  animation:flicker 3s infinite;
 }
 
-@keyframes glitch{
-  0%{transform:translate(-50%,-50%) skew(0)}
-  50%{transform:translate(-48%,-52%) skew(10deg)}
-  100%{transform:translate(-50%,-50%) skew(0)}
+/* flash */
+#flash{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:red;
+  opacity:0;
+  pointer-events:none;
+  z-index:999;
+  transition:0.3s;
 }
 </style>
 </head>
 
 <body>
 
+<div id="flash"></div>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+<h2 class="zalgo">M̷A̷S̷U̷K̷ ̷S̷E̷K̷A̷R̷A̷N̷G̷...</h2>
+
+<button onclick="masuk()">ENTER</button>
+
+<a href="https://www.instagram.com/4rknnnajaaa?igsh=MWM5cGNvbmJheDI5cw==" target="_blank" class="ig">
+📱 FOLLOW IG GW
+</a>
+
+<p class="zalgo kecil">
+J̷A̷N̷G̷A̷N̷ ̷L̷U̷P̷A̷ ̷F̷O̷L̷L̷O̷W̷ ̷A̷K̷U̷N̷ ̷G̷W̷
+</p>
+
+<p class="info">
+⚠️ PERINGATAN ⚠️<br>
+• Ada suara & efek horror<br>
+• Bisa kaget 😈<br>
+• Disarankan pakai headset 🎧
+</p>
+</div>
+
+<!-- MAIN -->
 <header>ARKAN CREEPY</header>
-<div class="glitch">YOU BELONG HERE</div>
+<div class="glitch">YOU ARE WATCHED</div>
 
 <div class="gallery">
 <img src="motion_photo_7523844779172652385~2.jpg">
@@ -114,25 +166,33 @@ header{
 <img src="motion_photo_5808118521687866893~2.jpg">
 </div>
 
-<audio autoplay loop src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_4f2d6b6b6a.mp3?filename=horror-ambience-110016.mp3"></audio>
+<audio id="audio"></audio>
 
 <script>
-// judul berubah random
-setInterval(()=>{
-  document.title = Math.random().toString(36).substring(2,8);
-},2000);
+function masuk(){
+  const flash = document.getElementById('flash');
+  const audio = document.getElementById('audio');
 
-// suara jumpscare random
-setInterval(()=>{
-  const s=new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b7f91.mp3');
-  s.volume=1;
-  s.play();
-},7000);
+  flash.style.opacity = "1";
 
-// layar goyang
+  const enterSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b7f91.mp3");
+  enterSound.volume = 0.6;
+  enterSound.play();
+
+  setTimeout(()=>{
+    flash.style.opacity = "0";
+    document.getElementById('login').style.display='none';
+
+    audio.src = "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Komiku/Brazilian_Street/Komiku_-_03_-_Brazilian_Street.mp3";
+    audio.play();
+  },600);
+}
+
+// smooth camera effect
 setInterval(()=>{
-  document.body.style.transform=`translate(${Math.random()*15}px, ${Math.random()*15}px)`;
-  setTimeout(()=>{document.body.style.transform='none'},100);
+  let x = (Math.random()-0.5)*2;
+  let y = (Math.random()-0.5)*2;
+  document.body.style.transform = `translate(${x}px, ${y}px)`;
 },2000);
 </script>
 
